@@ -2,8 +2,46 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory, Link } from 'react-router-dom'
 import { register } from '../redux/actions/authAction'
+import Navbar from './extra/Navbar/Navbar'
+import Footer from './extra/Footer/Footer'
+import { useTranslation, initReactI18next } from 'react-i18next';
+import i18n from 'i18next';
+import Select from 'react-select';
+import enTranslation from '../i18n/en/translation.json';
+import trTranslation from '../i18n/tr/translation.json';
+import rusTranslation from '../i18n/rus/translation.json';
+
+
+
+const languageOptions = [
+    { value: 'en', label: 'English' },
+    { value: 'tr', label: 'Türkçe' },
+    {value: 'rus', label: 'Русский'}
+    // Diğer dilleri buraya ekleyebilirsiniz
+  ];
+  
+  i18n.use(initReactI18next).init({
+    resources: {
+      en: { translation: enTranslation },
+      tr: { translation: trTranslation },
+      rus: {translation: rusTranslation}
+    },
+    lng: 'en',
+    fallbackLng: 'en',
+    interpolation: { escapeValue: false }
+  });
+  
 
 const Register = () => {
+
+    const { t, i18n } = useTranslation();
+  
+    const handleLanguageChange = (selectedLanguage) => {
+      i18n.changeLanguage(selectedLanguage.value);
+    };
+
+
+
     const { auth, alert } = useSelector(state => state)
     const dispatch = useDispatch()
     const history = useHistory()
@@ -33,12 +71,15 @@ const Register = () => {
     }
 
     return (
-        <div className="auth_page">
+      <>
+      <Navbar/>
+      <div className='main_auth_page'>
+      <div className="auth_page">
             <form onSubmit={handleSubmit}>
-                <h3 className="text-uppercase text-center mb-4">V-Network</h3>
+                <h3 className="text-uppercase text-center mb-4">JobPoint</h3>
 
                 <div className="form-group">
-                    <label htmlFor="fullname">Full Name</label>
+                    <label htmlFor="fullname">{t('fullname')}</label>
                     <input type="text" className="form-control" id="fullname" name="fullname"
                     onChange={handleChangeInput} value={fullname}
                     style={{background: `${alert.fullname ? '#fd2d6a14' : ''}`}} />
@@ -49,7 +90,7 @@ const Register = () => {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="username">User Name</label>
+                    <label htmlFor="username">{t('username')}</label>
                     <input type="text" className="form-control" id="username" name="username"
                     onChange={handleChangeInput} value={username.toLowerCase().replace(/ /g, '')}
                     style={{background: `${alert.username ? '#fd2d6a14' : ''}`}} />
@@ -60,7 +101,7 @@ const Register = () => {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Email address</label>
+                    <label htmlFor="exampleInputEmail1">{t('email')}</label>
                     <input type="email" className="form-control" id="exampleInputEmail1" name="email"
                     onChange={handleChangeInput} value={email}
                     style={{background: `${alert.email ? '#fd2d6a14' : ''}`}} />
@@ -71,7 +112,7 @@ const Register = () => {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="exampleInputPassword1">Password</label>
+                    <label htmlFor="exampleInputPassword1">{t('Password')}</label>
 
                     <div className="pass">
                         
@@ -91,7 +132,7 @@ const Register = () => {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="cf_password">Confirm Password</label>
+                    <label htmlFor="cf_password">{t('Confirm Password')}</label>
 
                     <div className="pass">
                         
@@ -112,30 +153,34 @@ const Register = () => {
 
                 <div className="row justify-content-between mx-0 mb-1">
                     <label htmlFor="male">
-                        Male: <input type="radio" id="male" name="gender"
+                    {t('Male')}: <input type="radio" id="male" name="gender"
                         value="male" defaultChecked onChange={handleChangeInput} />
                     </label>
 
                     <label htmlFor="female">
-                        Female: <input type="radio" id="female" name="gender"
+                    {t('Female')}: <input type="radio" id="female" name="gender"
                         value="female" onChange={handleChangeInput} />
                     </label>
 
                     <label htmlFor="other">
-                        Other: <input type="radio" id="other" name="gender"
+                    {t('Other')}: <input type="radio" id="other" name="gender"
                         value="other" onChange={handleChangeInput} />
                     </label>
                 </div>
                 
                 <button type="submit" className="btn btn-dark w-100">
-                    Register
+                {t('register')}
                 </button>
 
                 <p className="my-2">
-                    Already have an account? <Link to="/" style={{color: "crimson"}}>Login Now</Link>
+                {t('Already')} <Link to="/" style={{color: "crimson"}}>{t('Login now')}</Link>
                 </p>
             </form>
         </div>
+        <img width={500} height={500} src='./logo4.png'></img>
+      </div>
+        <Footer/>
+       </>
     )
 }
 

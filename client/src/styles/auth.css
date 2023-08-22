@@ -29,15 +29,24 @@
 } */
 
 
+
 .master {
     margin-top: 50px;
     display: flex;
     justify-content: space-between;
 }
+
+.main_auth_page {
+    display: flex;
+    justify-content: space-between;
+}
+.auth_page img {
+    margin-top: 10px;
+}
 form {
-    height: 500px;
+    height: 650px;
     width: 650px;
-    margin-top: 60px;
+   
 }
 .form-control {
     height: calc(3.5em + 0.75rem + 2px);

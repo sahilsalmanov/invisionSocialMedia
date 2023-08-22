@@ -7,6 +7,19 @@ import PrivateRouter from './customRouter/PrivateRouter'
 import Home from './pages/home'
 import Login from './pages/login'
 import Register from './pages/register'
+import About from './pages/extra/About.js'
+import Collaborations from './pages/extra/Collaborations'
+import Contact from './pages/extra/Contact'
+import ContactInformation from './pages/extra/ContactInformation'
+import FrequentlyAsked from './pages/extra/FrequentlyAsked'
+import HelpAndSupport from './pages/extra/HelpAndSupport'
+import HelpCenter from './pages/extra/HelpCenter'
+import HowItWork from './pages/extra/HowItWorks'
+import Press from './pages/extra/Press'
+import Privacy from './pages/extra/Privacy'
+import Sources from './pages/extra/Sources'
+import TermsOfUse from './pages/extra/TermsOfUse'
+import Vacancies from './pages/extra/Vacancies'
 
 import Alert from './components/alert/Alert'
 import Header from './components/header/Header'
@@ -82,6 +95,20 @@ function App() {
           
           <Route exact path="/" component={auth.token ? Home : Login} />
           <Route exact path="/register" component={Register} />
+          <Route exact path="/howitwork" component={HowItWork} />
+          <Route exact path="/contact" component={Contact} />
+          <Route exact path="/contactinformation" component={ContactInformation} />
+          <Route exact path="/frequentlyasked" component={FrequentlyAsked} />
+          <Route exact path="/helpandsupport" component={HelpAndSupport} />
+          <Route exact path="/termsmofuse" component={TermsOfUse} />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/sources" component={Sources} />
+          <Route exact path="/helpandsupport" component={HelpAndSupport} />
+          <Route exact path="/vacancies" component={Vacancies} />
+          <Route exact path="/press" component={Press} />
+          <Route exact path="/helpcenter" component={HelpCenter} />
+          <Route exact path="/privacy" component={Privacy} />
+          <Route exact path="/collaborations" component={Collaborations} />
 
           <PrivateRouter exact path="/:page" component={PageRender} />
           <PrivateRouter exact path="/:page/:id" component={PageRender} />
