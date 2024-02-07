@@ -1,7 +1,7 @@
 const Comments = require('../models/commentModel')
 const Posts = require('../models/postModel')
 
-
+            
 const commentCtrl = {
     createComment: async (req, res) => {
         try {
