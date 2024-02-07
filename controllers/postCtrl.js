@@ -101,7 +101,7 @@ const postCtrl = {
             const like = await Posts.findOneAndUpdate({_id: req.params.id}, {
                 $push: {likes: req.user._id}
             }, {new: true})
-
+ 
             if(!like) return res.status(400).json({msg: 'This post does not exist.'})
 
             res.json({msg: 'Liked Post!'})
